@@ -310,7 +310,7 @@ fi;
 
 file -m "$bin/magic" *-*ramdisk 2>/dev/null | cut -d: -f2 | awk '{ print $1 }' > "$file-${vendor}ramdiskcomp";
 ramdiskcomp=`cat *-*ramdiskcomp`;
-unpackcmd="$ramdiskcomp -dc";
+unpackcmd="$bin/lz4 -dc";
 compext=$ramdiskcomp;
 case $ramdiskcomp in
   gzip) unpackcmd="gzip -dcq"; compext=gz;;
@@ -346,10 +346,10 @@ else
     echo " ";
   fi;
   echo "Compression used: $ramdiskcomp";
-  if [ ! "$compext" -a ! "$ramdiskcomp" = "cpio" ]; then
-    echo "Unsupported format.";
-    abort;
-    exit 1;
+#  if [ ! "$compext" -a ! "$ramdiskcomp" = "cpio" ]; then
+#    echo "Unsupported format.";
+#    abort;
+#    exit 1;
   fi;
   $sudo chown 0:0 ramdisk 2>/dev/null;
   cd ramdisk;
@@ -361,7 +361,7 @@ else
     exit 1;
   fi;
   cd ..;
-fi;
+#fi;
 
 echo " ";
 echo "Done!";
