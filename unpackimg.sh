@@ -351,7 +351,7 @@ else
 #    abort;
 #    exit 1;
   fi;
-  $sudo chown 0:0 ramdisk 2>/dev/null;
+  chown 0:0 ramdisk 2>/dev/null;
   cd ramdisk;
   $unpackcmd "../split_img/$file-${vendor}ramdisk.cpio$compext" | $cpio -i -d --no-absolute-filenames;
   if [ ! $? -eq "0" ]; then
