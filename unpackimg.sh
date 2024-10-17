@@ -220,7 +220,7 @@ case $imgtype in
   AOSP_VNDR) vendor=vendor_;;
 esac;
 case $imgtype in
-  AOSP|AOSP_VNDR) "$prefix/bin/unpackbootimg" -i "$img";;
+  AOSP|AOSP_VNDR) "$bin/unpackbootimg" -i "$img";;
   AOSP-PXA) "$bin/$arch/pxa-unpackbootimg" -i "$img";;
   ELF)
     mkdir elftool_out;
@@ -318,8 +318,8 @@ case $ramdiskcomp in
   xz) ;;
   lzma) ;;
   bzip2) compext=bz2;;
-  lz4) unpackcmd=""$prefix/bin/lz4 -dcq";;
-  lz4-l) unpackcmd=""$prefix/bin/lz4 -dcq"; compext=lz4;;
+  lz4) unpackcmd=""$bin/lz4 -dcq";;
+  lz4-l) unpackcmd=""$bin/lz4 -dcq"; compext=lz4;;
   cpio) unpackcmd="cat"; compext="";;
   empty) compext=empty;;
   *) compext="";;
